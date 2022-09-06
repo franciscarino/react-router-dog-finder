@@ -1,34 +1,36 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 
-function DogDetails() {
+/**Render DogDetails
+ * 
+ * Prop:
+ *  - dogs
+ */
+function DogDetails({ dogs }) {
 
-  // const { name, age, src, facts } = useParams();
-  const { name, age, src, facts } = useParams();
+  const { name } = useParams();
+  console.log("name: ", name);
+
+  const dog = dogs.filter(d => d.name === name);
+  console.log("dog: ", dog);
+  const currentDog = dog[0];
 
   return (
-    <>
-      <img src={`${src}.jpg`} alt={src} />
-      <h2>Name: {name}</h2>
-      <h3>Age: {age}</h3>
-      <ul>
-        {facts.map(fact =>
-          <li>{fact}</li>
-        )}
-      </ul>
-    </>
-  );
-}
+    <>{(currentDog &&
+      <div>
+        <img src={`/${currentDog.src}.jpg`} alt={currentDog.name} />
+        <h2>Name: {currentDog.name}</h2>
+        <h3>Age: {currentDog.age}</h3>
+        <ul>
+          {currentDog.facts.map(fact =>
+            <li key={uuid()}>{fact}</li>
+          )}
+        </ul>
+      </div>
+    )}
+    </>);
 
-// {
-//   "name": "Whiskey",
-//   "age": 5,
-//   "src": "whiskey",
-//   "facts": [
-//     "Whiskey loves eating popcorn.",
-//     "Whiskey is a terrible guard dog.",
-//     "Whiskey wants to cuddle with you!"
-//   ]
-// }
+}
 
 export default DogDetails;

@@ -1,37 +1,20 @@
-import { React, useEffect, useState } from "react";
-import axios from 'axios';
+import { React } from "react";
+import { Link } from "react-router-dom";
 import { v4 as uuid } from 'uuid';
+import "./Doglist.css";
 
-const BASE_URL = "http://localhost:5001/dogs";
-
-// let dogsList = await getDogs();
-
-
-function Doglist() {
-
-  const [dogs, setDogs] = useState([]);
-
-  useEffect(() => {
-    async function getDogs() {
-      const response = await axios.get(BASE_URL);
-      // dogsList = response.data;
-      // console.log('test getDogs');
-      // console.log('resp', response);
-      // console.log('data', response.data);
-      setDogs(response.data);
-      console.log("resp.data", response.data);
-      console.log('dogs', dogs);
-    };
-    getDogs();
-  }, []);
-
-  // console.log("dogslist is", dogsList);
+/**Render Doglist
+ * 
+ * Prop:
+ *  - dogs
+ */
+function Doglist({ dogs }) {
   return (
     <>
-      {dogs.map(dog =>
+      {dogs.map(({ name, src }) =>
         <div key={uuid()}>
-          <img src={`${dog.src}.jpg`} alt={dog.src} />
-          <h2>Name: {dog.name}</h2>
+          <img src={`/${src}.jpg`} alt={src} />
+          <Link to={`/dogs/${name}`} ><h2>{name}</h2></Link>
         </div>
       )}
     </>

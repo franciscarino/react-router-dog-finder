@@ -9,12 +9,14 @@ import DogDetails from './DogDetails';
  * Renders routes: DogList, DogDetails
  */
 
-function RoutesList() {
+function RoutesList({ dogs }) {
+  console.log("RoutesList:", dogs);
 
   return (
     <Routes>
-      <Route path="/dogs" element={<Doglist />} />
-      <Route path="/dogs/:name" element={<DogDetails />} />
+      <Route path="/dogs" element={<Doglist dogs={dogs} />} />
+      <Route path="/dogs/:name" element={<DogDetails dogs={dogs} />} />
+      <Route path="*" element={<Navigate to="/dogs" />} />
     </Routes>
   );
 }

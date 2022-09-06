@@ -1,13 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+// import "./Nav.css";
 
+/** Render Nav bar */
 function Nav() {
   return (
-    <ul>
-      <li><NavLink to="/dogs/duke">Duke</NavLink></li>
-      <li><NavLink to="/dogs/perry">Perry</NavLink></li>
-      <li><NavLink to="/dogs/whiskey">Whiskey</NavLink></li>
-    </ul>
+    <nav>
+      <ul className="Nav">
+        <li><NavLink to="/">Home</NavLink></li>
+        <li><NavLink to="/dogs/Duke">Duke</NavLink></li>
+        <li><NavLink to="/dogs/Perry">Perry</NavLink></li>
+        <li><NavLink to="/dogs/Whiskey">Whiskey</NavLink></li>
+      </ul>
+    </nav>
   );
 }
 // end
